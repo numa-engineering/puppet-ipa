@@ -340,7 +340,7 @@ class ipa::server(
 		}
 	}
 
-	$gpg_cmd = "/usr/bin/gpg2 --yes --homedir '${vardir}/gpg/'"	# base gpg cmd!
+	$gpg_cmd = "/usr/bin/gpg --yes --homedir '${vardir}/gpg/'"	# base gpg cmd!
 
 	$gpg_import = "${gpg_publickey}" ? {
 		'' => "--keyserver '${gpg_keyserver}' --recv-keys '${gpg_recipient}'",
@@ -348,6 +348,10 @@ class ipa::server(
 	}
 
 	if "${gpg_recipient}" != '' {
+
+		package { "gnupg",
+			ensure => present
+		}
 
 		# check if key is already imported
 		$gpg_unless = "${gpg_cmd} --with-colons --fast-list-mode --list-public-keys '${gpg_recipient}'"
