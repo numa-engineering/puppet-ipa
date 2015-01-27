@@ -340,7 +340,7 @@ class ipa::server(
 		}
 	}
 
-	$gpg_cmd = "/usr/bin/gpg --homedir '${vardir}/gpg/'"	# base gpg cmd!
+	$gpg_cmd = "/usr/bin/gpg2 --homedir '${vardir}/gpg/'"	# base gpg cmd!
 
 	$gpg_import = "${gpg_publickey}" ? {
 		'' => "--keyserver '${gpg_keyserver}' --recv-keys '${gpg_recipient}'",
