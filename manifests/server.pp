@@ -349,7 +349,7 @@ class ipa::server(
 
 	if "${gpg_recipient}" != '' {
 
-		package { "gnupg",
+		package { "gnupg":
 			ensure => present
 		}
 
